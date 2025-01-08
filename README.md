@@ -44,8 +44,7 @@ patchName
         // the data type of the field this BC is attached to
         Info << " --- ---- ---- Executing custom BC" << endl;
         // But gradients are always vectors I guess
-        // This mimics "zeroGradient"
-        refGrad() = Field<vector>(this->patch().size(), vector::zero);
+        refValue() = Field<scalar>(this->patch().size(), 0);
     #};  
 }
 ```
