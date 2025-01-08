@@ -23,6 +23,7 @@ License
 
 \*---------------------------------------------------------------------------*/
 
+#include "codedBase.H"
 #include "mixedCodedFvPatchField.H"
 #include "dynamicCode.H"
 #include "dynamicCodeContext.H"
@@ -268,8 +269,24 @@ tmp<Field<Type> > mixedCodedFvPatchField<Type>::gradientBoundaryCoeffs() const
 template<class Type>
 void mixedCodedFvPatchField<Type>::write(Ostream& os) const
 {
-    //mixedFvPatchField::write(os);
-    os << dict_ << endl;
+    updateLibrary(redirectType_);
+    redirectBC().write(os);
+
+    fvPatchField<Type>::write(os);
+
+    auto writeEntryIfPresent = [](Ostream& os, const dictionary& dict, word key) {
+        if (dict.found(key)) {
+            os << dict.lookupEntry(key, false, false);
+        }
+    };
+
+    writeEntryIfPresent(os, dict_, "redirectType");
+    writeEntryIfPresent(os, dict_, "codeContext");
+    writeEntryIfPresent(os, dict_, "codeInclude");
+    writeEntryIfPresent(os, dict_, "localCode");
+    writeEntryIfPresent(os, dict_, "code");
+    writeEntryIfPresent(os, dict_, "codeOptions");
+    writeEntryIfPresent(os, dict_, "codeLibs");
 }
 
 template<class Type>

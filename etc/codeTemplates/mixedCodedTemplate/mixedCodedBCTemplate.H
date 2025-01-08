@@ -58,6 +58,7 @@ public:
     //- Runtime type information
     TypeName("${typeName}");
 
+    using parentType = mixedFvPatchField<${TemplateType}>;
 
     // Constructors
 
@@ -128,6 +129,8 @@ public:
 
         //- Update the coefficients associated with the patch field
         virtual void updateCoeffs();
+
+        virtual void write(Ostream& os) const;
 };
 
 

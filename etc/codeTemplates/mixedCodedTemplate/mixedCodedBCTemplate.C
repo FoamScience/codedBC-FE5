@@ -200,6 +200,10 @@ void ${typeName}MixedValueFvPatch${FieldType}::updateCoeffs()
     this->mixedFvPatchField<${TemplateType}>::updateCoeffs();
 }
 
+void ${typeName}MixedValueFvPatch${FieldType}::write(Ostream& os) const
+{
+    parentType::write(os);
+}
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
