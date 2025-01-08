@@ -1,0 +1,6 @@
+**/.cache/**
+*dep
+**/compile_commands.json
+**/linux*/
+dynamicCode
+**/lnInclude/
