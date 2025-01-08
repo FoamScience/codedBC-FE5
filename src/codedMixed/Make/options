@@ -1,0 +1,10 @@
+EXE_INC = \
+    -I./lnInclude \
+    -I$(LIB_SRC)/foam/lnInclude \
+    -I$(LIB_SRC)/finiteVolume/lnInclude \
+    -I$(LIB_SRC)/meshTools/lnInclude
+
+LIB_LIBS = \
+    -lfoam \
+    -lfiniteVolume \
+    -lmeshTools
